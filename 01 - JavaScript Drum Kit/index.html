@@ -59,7 +59,42 @@
   <audio data-key="76" src="sounds/tink.wav"></audio>
 
 <script>
-  
+  // 2
+  function playSound(e) {
+    const audio = document.querySelector(`audio[data-key="${e.keyCode}"]`);
+    const key = document.querySelector(`.key[data-key="${e.keyCode}"]`); // can use 'div' instead of '.key' too
+
+    // اگه میخوای تست کنی المنت درست انتخاب شده، دو خط بعدی رو از کامنت بودن خارج کن
+    // console.log(audio);
+    // console.log(key);
+
+    if(!audio) return; // تابع متوقف می‌شود چون کلید فشرده شده المنت audio ندارد.
+
+    audio.currentTime = 0; // برگشتن به اول فایل صوتی
+    audio.play();
+    
+    key.classList.add('playing');
+  }
+
+  // 5
+  function removeTransition(e) {
+    // برای دیدن همه رویدادها، خط بعدی را از کامنت بودن خارج کن
+    // console.log(e);
+
+    if (e.propertyName !== 'transform') return; // اگر transform نباشد، نادیده میگیرد
+
+    this.classList.remove('playing');
+  }
+
+  // 1
+  window.addEventListener('keydown', playSound);
+
+  // 3
+  const keys = document.querySelectorAll('.key');
+
+  // 4
+  keys.forEach(key => key.addEventListener('transitionend', removeTransition));
+
 </script>
 
 
