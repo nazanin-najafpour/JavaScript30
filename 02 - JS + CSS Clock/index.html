@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>JS + CSS Clock</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
+  <link rel="icon" href="https://fav.farm/%E2%8F%B0" />
 </head>
 <body>
 
@@ -63,13 +63,55 @@
       background: black;
       position: absolute;
       top: 50%;
+
+      /* 1 */
+      transform: rotate(90deg);
+
+      /* 2 */
+      transform-origin: 100%;
+
+      /* 3 */
+      /* transition: all 0.5s; */
+      transition: all 0.05s;
+
+      /* 4 */
+      /* transition-timing-function: ease-in-out; */
+      transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
     }
 
+    .min-hand {
+      background: white;
+    }
+
+    .second-hand {
+      background: red;
+    }
   </style>
 
   <script>
+    // 1
+    const hourHand = document.querySelector('.hour-hand');
+    const minHand = document.querySelector('.min-hand');
+    const secondHand = document.querySelector('.second-hand');
 
+    // 2
+    const calcDegrees = (time, max) => ((time / max) * 360) + 90;
 
+    // 3
+    function setHands() {
+      const now = new Date();
+
+      const hourDegrees = calcDegrees(now.getHours(), 12);
+      const minDegrees = calcDegrees(now.getMinutes(), 60);
+      const secondDegrees = calcDegrees(now.getSeconds(), 60);
+
+      // 4
+      hourHand.style.transform = `rotate(${hourDegrees}deg)`;
+      minHand.style.transform = `rotate(${minDegrees}deg)`;
+      secondHand.style.transform = `rotate(${secondDegrees}deg)`;
+    }
+
+    setInterval(setHands, 1000);
   </script>
 </body>
 </html>
