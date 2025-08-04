@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Scoped CSS Variables and JS</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
+  <link rel="icon" href="https://fav.farm/%F0%9F%93%B8" />
 </head>
 <body>
   <h2>Update CSS Variables with <span class='hl'>JS</span></h2>
@@ -22,6 +22,24 @@
   <img src="https://source.unsplash.com/7bwQXzbF6KE/800x500">
 
   <style>
+    /* 1 */
+    :root {
+      --base: #ffc600;
+      --spacing: 10px;
+      --blur: 10px;
+    }
+
+    /* 2 */
+    img {
+      padding: var(--spacing);
+      background: var(--base);
+      filter: blur(var(--blur));
+    }
+
+    /* 3 */
+    .hl {
+      color: var(--base);
+    }
 
     /*
       misc styles, nothing to do with CSS variables
@@ -46,6 +64,23 @@
   </style>
 
   <script>
+    // 1
+    const inputs = document.querySelectorAll('.controls input');
+
+    // 4
+    function handleUpdate() {
+      const suffix = this.dataset.sizing || '';
+      // برای اینکه ببینید در متغیر بالا چه چیزی ذخیره شده است، خط بعدی را از کامنت بودن خارج کنید و روی یکی از ورودی‌های صفحه وب ماوس را تکان دهید.
+      // console.log(suffix);
+
+      document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix);
+    }
+
+    // 2
+    inputs.forEach(input => input.addEventListener('change', handleUpdate));
+
+    // 3
+    inputs.forEach(input => input.addEventListener('mousemove', handleUpdate));
   </script>
 
 </body>
