@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Console Tricks!</title>
-  <link rel="icon" href="https://fav.farm/🔥" />
+  <link rel="icon" href="https://fav.farm/%F0%9F%92%BB" />
 </head>
 <body>
 
@@ -19,28 +19,103 @@
     }
 
     // Regular
+    // 2
+    console.log('hello');
 
     // Interpolated
+    // 3
+    console.log('Hello I am a %s string!', '💩')
+
+    const myAge = 23;
+    console.log(`I am ${myAge} years old.`);
 
     // Styled
+    // 4
+    console.log('%c I am some great text' , 'font-size:50ox; background:red; text-shadow: 10px 10px 0 blue');
 
     // warning!
+    // 5
+    console.warn('OH NOOO');
 
     // Error :|
+    // 6
+    console.error('Shit!');
 
     // Info
+    // 7
+    console.info('The Egyptians believe the most significant thing you could do in your life was die.')
 
     // Testing
+    // 8
+    console.assert(1 === 1, "This message won't be displayed because the input is true");
+    console.assert(1 === 2, "1 isn't equal to 2");
+
+    const p = document.querySelector('p');
+    console.assert(p.classList.contains('ouch'), "the element p doesn't have a class named 'ouch'");
 
     // clearing
+    // 9
+    console.clear();
 
     // Viewing DOM Elements
+    // 10
+    console.log(p);
+    console.dir(p);
 
     // Grouping together
+    console.clear();
+    // 11
+    dogs.forEach(dog => {
+      console.log(`This is ${dog.name}`);
+      console.log(`${dog.name} is ${dog.age} years old`);
+      console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+    });
+
+    dogs.forEach(dog => {
+      console.group(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
+
+    dogs.forEach(dog => {
+      console.groupCollapsed(`${dog.name}`);
+        console.log(`This is ${dog.name}`);
+        console.log(`${dog.name} is ${dog.age} years old`);
+        console.log(`${dog.name} is ${dog.age * 7} dog years old`);
+      console.groupEnd(`${dog.name}`);
+    });
 
     // counting
+    // 12
+    console.count('Wes');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Wes');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count('Steve');
+    console.count();
 
     // timing
+    // 13
+    console.time('fetching data');
+    fetch('https://jsonplaceholder.typicode.com/posts/1')
+    .then((response) => response.json())
+    .then((json) => {
+      console.timeEnd('fetching data');
+       console.log(json);
+    });
+
+    // table
+    // 14
+    console.table(dogs);
 
   </script>
 </body>
